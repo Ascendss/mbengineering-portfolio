@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MB Engineering Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #1f1f1f;
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 5px;
+      transition: background 0.2s ease;
+    }
+
+    nav ul li a:hover {
+      background: #333;
+    }
+
+    main {
+      padding: 2rem;
+      display: grid;
+      gap: 2rem;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.85rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MB Engineering</h1>
+    <p>Your Name | Engineering Technologist</p>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <p>
+        Hello! I'm an aspiring engineering technologist passionate about solving real-world problems through design, testing, and hands-on development. This site is a showcase of my work, resume, and reflections on school and job experiences.
+      </p>
+    </section>
+
+    <section id="resume" class="card">
+      <h2>Resume</h2>
+      <p>You can view or download my resume below.</p>
+      <a href="assets/uploads/YourName_Resume.pdf" target="_blank">Download Resume</a>
+    </section>
+
+    <section id="gallery" class="card">
+      <h2>Project Gallery</h2>
+      <div class="gallery">
+        <div>
+          <img src="assets/uploads/project1.jpg" alt="Project 1" />
+          <p>Project 1</p>
+        </div>
+        <div>
+          <img src="assets/uploads/project2.jpg" alt="Project 2" />
+          <p>Project 2</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" class="card">
+      <h2>Blog</h2>
+      <p>Coming soon: Technical write-ups, school reflections, and hands-on build logs.</p>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p>Feel free to reach out via LinkedIn, email, or at my next career fair visit.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MB Engineering</p>
+  </footer>
+
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+

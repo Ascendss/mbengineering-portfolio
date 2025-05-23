@@ -2,44 +2,33 @@ const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
 
-exports.handler = async () => {
+exports.handler = async function () {
   try {
-    const dir = path.resolve(__dirname, "../../content/projects");
-
-    // 🔍 Log the path to help us debug in Netlify logs
-    console.log("🪵 Reading from directory:", dir);
-
+    const dir = path.resolve(__dirname, "./projects"); // updated path
     if (!fs.existsSync(dir)) {
-      throw new Error(`Directory not found: ${dir}`);
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: `❌ Directory not found: ${dir}` })
+      };
     }
 
-    const files = fs.readdirSync(dir);
-
-    const projects = files
-      .filter(file => file.endsWith(".md"))
-      .map(file => {
-        const filePath = path.join(dir, file);
-        const content = fs.readFileSync(filePath, "utf8");
-        const { data } = matter(content);
-
-        return {
-          title: data.title || "Untitled Project",
-          description: data.description || "",
-          image: data.image || "",
-          link: data.link || "#",
-          slug: file.replace(".md", "")
-        };
-      });
+    const files = fs.readdirSync(dir).filter(file => file.endsWith(".md"));
+    const projects = files.map(filename => {
+      const filePath = path.join(dir, filename);
+      const fileContent = fs.readFileSync(filePath, "utf8");
+      const { data } = matter(fileContent);
+      return data;
+    });
 
     return {
       statusCode: 200,
       body: JSON.stringify(projects)
     };
-  } catch (error) {
-    console.error("🔥 Function error:", error);
+  } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message })
+      body: JSON.stringify({ error: `❌ ${err.message}` })
     };
   }
 };
+

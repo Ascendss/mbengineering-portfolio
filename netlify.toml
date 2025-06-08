@@ -1,2 +1,9 @@
 [functions]
-  included_files = ["content/projects/**"]
+  included_files = [
+    "content/projects/**"
+  ]
+
+[functions.getprojects]
+  included_files = [
+    "content/projects/**"
+  ]

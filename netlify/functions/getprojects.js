@@ -4,7 +4,7 @@ const matter = require('gray-matter');
 
 exports.handler = async function () {
   try {
-    const projectsDirectory = path.resolve(__dirname, 'projects');
+const projectsDirectory = path.resolve(__dirname, '../../functions/projects');
     const filenames = fs.readdirSync(projectsDirectory);
     const projects = filenames.map((filename) => {
       const filePath = path.join(projectsDirectory, filename);

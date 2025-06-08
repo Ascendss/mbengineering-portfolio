@@ -1,2 +1,2 @@
 [functions]
-  included_files = ["netlify/functions/projects/**"]
+included_files = ["netlify/functions/projects/**"]

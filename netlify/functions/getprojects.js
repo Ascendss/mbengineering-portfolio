@@ -4,7 +4,11 @@ const matter = require('gray-matter');
 
 exports.handler = async function () {
   try {
-    const projectsDirectory = path.resolve(__dirname, '../../functions/projects');
+    // Try both Netlify Production and Local paths
+    const localPath = path.resolve(__dirname, 'projects'); // netlify dev
+    const prodPath = path.resolve(__dirname, '../../content/projects'); // real deploy
+
+    const projectsDirectory = fs.existsSync(localPath) ? localPath : prodPath;
     const filenames = fs.readdirSync(projectsDirectory);
     const mdFiles = filenames.filter(file => file.endsWith('.md'));
 

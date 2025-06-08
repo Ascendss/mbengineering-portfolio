@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const matter = require('gray-matter');
-
 exports.handler = async function () {
   try {
-    // Try both Netlify Production and Local paths
-    const localPath = path.resolve(__dirname, 'projects'); // netlify dev
-    const prodPath = path.resolve(__dirname, '../../content/projects'); // real deploy
-
+    const localPath = path.resolve(__dirname, 'projects');
+    const prodPath = path.resolve(__dirname, '../../content/projects');
     const projectsDirectory = fs.existsSync(localPath) ? localPath : prodPath;
+
+    console.log("Looking in:", projectsDirectory); // 👈
+
     const filenames = fs.readdirSync(projectsDirectory);
+    console.log("Found files:", filenames); // 👈
+
     const mdFiles = filenames.filter(file => file.endsWith('.md'));
+    console.log("Markdown files:", mdFiles); // 👈
 
     const projects = mdFiles.map((filename) => {
       const filePath = path.join(projectsDirectory, filename);
@@ -25,6 +25,7 @@ exports.handler = async function () {
       body: JSON.stringify(projects),
     };
   } catch (error) {
+    console.error("ERROR:", error); // 👈 log full error
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message }),
